@@ -1,6 +1,8 @@
 (ns leiningen.update
   "lein update checks for newer versions of currently used dependencies and aks the user if they should be updated to the latest stable."
-  (:use (clojure.contrib duck-streams seq-utils str-utils)
+  (:use (clojure.contrib [duck-streams :only [writer]]
+			 [seq-utils :only ()]
+			 [str-utils :only (chomp)])
 	[leiningen.add :only [latest-stable add-artifact find-clojar good-read-line]]
 	[leiningen.search :only [read-clj]]
 	[leiningen.update-repo :only [compare-versions]]))

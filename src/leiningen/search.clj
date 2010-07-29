@@ -1,6 +1,7 @@
 (ns leiningen.search
   "Searches the indexed clojars.org repository. Giving -v as first argument prints the versions instead of the description."
-  (:use (clojure.contrib duck-streams seq-utils str-utils)
+  (:use (clojure.contrib [duck-streams :only (reader)]
+			 [str-utils :only (re-sub str-join)])
 	[leiningen.update-repo :only [*lein-dir* compare-versions]])
   (:import java.io.File))
 

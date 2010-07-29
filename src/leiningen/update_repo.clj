@@ -1,7 +1,11 @@
 (ns leiningen.update-repo
   "Updates the clojars.org repositories index."
-  (:use clojure.contrib.duck-streams)
-  (:import (java.io File InputStreamReader PushbackReader) java.util.zip.GZIPInputStream java.net.URL))
+  (:use (clojure.contrib [duck-streams :only (writer)]))
+  (:import (java.io File
+		    InputStreamReader
+		    PushbackReader)
+	   java.util.zip.GZIPInputStream
+	   java.net.URL))
 
 (def *lein-dir* (str (System/getProperty "user.home") "/.lein"))
 

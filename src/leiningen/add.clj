@@ -2,7 +2,8 @@
   "Interactively adds a dependency from clojars.
   With one parameter it will add the latest stable of the corresponding version with two arguments it will take the second argument as version.
   If the first parameter is --dev or -d it will work exactly as without --dev just that it will add a dev dependency."
-  (:use (clojure.contrib duck-streams seq-utils str-utils)
+  (:use (clojure.contrib [duck-streams :only (reader writer)]
+			 [str-utils :only (chomp str-join)])
 	[leiningen.update-repo :only [*lein-dir*]]
 	[leiningen.search :only [read-clj search-clojar artifact-name]]))
 
