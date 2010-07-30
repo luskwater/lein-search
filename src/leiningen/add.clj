@@ -17,7 +17,7 @@
     (reduce 
      (fn [[form is-deps?] f] 
        (if is-deps? 
-	 [(cons (cons [(symbol artifact) version] f) form) false]
+	 [(cons (conj f [(symbol artifact) version]) form) false]
 	 [(cons f form) (= f type)])) ['() false] project))))
 
 (defn find-clojar [what]

@@ -14,7 +14,7 @@
     (reduce 
      (fn [[form is-deps?] f] 
        (if is-deps?
-	 [(cons (map (fn [[a v]] (if (= a (symbol artifact)) [a version] [a v])) f) form) false]
+	 [(cons (vec (map (fn [[a v]] (if (= a (symbol artifact)) [a version] [a v])) f)) form) false]
 	 [(cons f form) (= f type)])) ['() false] project))))
 
 (defn ask-for-update [artifact version new-version]
