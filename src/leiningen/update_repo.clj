@@ -10,9 +10,14 @@
 (def *lein-dir* (str (System/getProperty "user.home") "/.lein"))
 
 (defn split-version [v]
-  (if (re-find #"(\d+)\.(\d+)\.(\d+)(-.*)?" v)
-    (let [[_ major minor patch suffix] (re-find #"(\d+)\.(\d+)\.(\d+)(?:-(.*))?" v)]
-      [(Integer/parseInt major) (Integer/parseInt minor) (Integer/parseInt patch) (or suffix "")])
+  (if v
+    (if (re-find #"(\d+)\.(\d+)\.(\d+)(-.*)?" v)
+      (let [[_ major minor patch suffix] (re-find #"(\d+)\.(\d+)(?:\.(\d+))?(?:-(.*))?" v)]
+	[(Integer/parseInt major) (Integer/parseInt minor)
+	 (or (and patch
+		  (Integer/parseInt patch))
+	     0) (or suffix "")])
+      '(0 0 0 ""))
     '(0 0 0 "")))
 
 (defn compare-versions [v1 v2]
